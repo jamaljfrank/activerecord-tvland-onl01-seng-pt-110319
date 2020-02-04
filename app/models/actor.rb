@@ -1,14 +1,14 @@
 class Actor < ActiveRecord::Base
-  has_many :characters
-  has_many :shows, through: :characters
-end
+    has_many :characters
+    has_many :shows, through: :characters
 
-  def self.full_name
-    
-    puts self.first_name 
+    def full_name
+      "#{self.first_name} #{self.last_name}"
+    end
+
+    def list_roles
+      self.characters.collect do |c|
+        "#{c.full_name} - #{c.show.name}"
+    end
   end
-  
-  def list_roles
-  end
-
-
+end 
